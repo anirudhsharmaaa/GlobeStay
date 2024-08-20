@@ -47,13 +47,13 @@
           <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
 
             <div class="d-grid gap-2 editanddeletebtn">
-              
-                <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark editbtn">Edit</a>
-              
-                <form method="post" action="/listings/<%= listing._id %>?_method=Delete">
-                  <button class="btn btn-danger deletebtn">Delete</button>
-                </form>
-              
+
+              <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark editbtn">Edit</a>
+
+              <form method="post" action="/listings/<%= listing._id %>?_method=Delete">
+                <button class="btn btn-danger deletebtn">Delete</button>
+              </form>
+
             </div>
 
             <% } %>
@@ -114,10 +114,12 @@
                     <p class="card-text">
                       <%= review.comment %>
                     </p>
-
-                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                      <button class="btn btn-sm btn-outline-danger">Delete</button>
-                    </form>
+                    <% if(currUser && review.author._id.equals(currUser._id)){ %>
+                      <form method="POST"
+                        action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                      </form>
+                      <% } %>
                   </div>
                 </div>
                 <% } %>
@@ -129,7 +131,7 @@
       <h3 class="map mb-4">Where you'll be</h3>
       <div id="map"></div>
       <script>
-        const listing =  <%- JSON.stringify(listing) %>; //marker coordinates
+        const listing =  <% - JSON.stringify(listing) %>; //marker coordinates
 
         let mapToken = "<%= process.env.MAP_TOKEN %>";
         mapboxgl.accessToken = mapToken;
