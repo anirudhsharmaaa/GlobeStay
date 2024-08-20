@@ -5,6 +5,11 @@ body{
   min-height: 100vh;
 }
 
+body::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+
 .container {
     flex: 1;
 }

@@ -8,13 +8,13 @@
   }
 
   .btn-search {
-    background-color: #fe424d;
+    background-color: #ff385c;
     color: white;
     border-radius: 50%;
   }
 
   .btn-search:hover {
-    background-color: #fe424d;
+    background-color: #2d0b00;
     color: white;
   }
 
@@ -29,30 +29,77 @@
     margin-left: 20px;
 
   }
-  .icong{
+
+  .icong {
     font-size: 2.5em;
     color: transparent;
-    background: linear-gradient(#fe424d, black);
-    -webkit-background-clip: text;
+    background: linear-gradient(#c72e03, black);
   }
-  .navbar-nav{
+
+  .navbar-nav {
     background-color: white;
   }
 
+  .Explore {
+    width: 10em;
+    position: relative;
+    height: 3em;
+    border: 3px ridge black;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .Explore::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: white;
+    transition: 0.5s;
+    transform-origin: center;
+  }
+
+  .Explore::before {
+    content: "";
+    transform-origin: center;
+    position: absolute;
+    top: 80%;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: white;
+    transition: 0.5s;
+  }
+
+  .Explore:hover::before,
+  button:hover::after {
+    transform: scale(0)
+  }
+
+  .Explore:hover {
+    box-shadow: inset 0px 0px 25px #ff385c;
+  }
 </style>
 
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"><i class="fa-brands fa-gofore icong"></i></a>
-     <a href="/listings"><button class="Explore">Explore</button></a>
+    <a href="/listings"><button class="Explore">Explore</button></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-      <!-- //Search Bar -->
 
 
       <div class="search ms-auto">
@@ -62,70 +109,20 @@
         </form>
       </div>
 
-      <!-- //Search Bar -->
 
 
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link mybutton" href="/listings/new">Add New Listings</a>
-          <% if(!currUser){ %>
-            <a class="nav-link mybutton" href="/signup"><b>Sign Up</b></a>
-            <a class="nav-link mybutton" href="/login"><b>Log In</b></a>
-         <% } %>
-         
-         <% if(currUser){ %>
-            <a class="nav-link mybutton" href="/logout">Log Out</a>
-         <% } %>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link mybutton" href="/listings/new">Add New Listings</a>
+        <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" href="/login"><b>Log In</b></a>
+          <% } %>
+
+            <% if(currUser){ %>
+              <a class="nav-link" href="/logout">Log Out</a>
+              <% } %>
 
       </div>
     </div>
   </div>
 </nav>
-
-<style>
-.Explore {
-  width: 10em;
-  position: relative;
-  height: 3em;
-  border: 3px ridge #ff385c;
-  outline: none;
-  background-color: transparent;
-  color: black;
-  transition: 1s;
-  border-radius: 0.3em;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.Explore::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: white;
-  transition: 0.5s;
-  transform-origin: center;
-}
-
-.Explore::before {
-  content: "";
-  transform-origin: center;
-  position: absolute;
-  top: 80%;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: white;
-  transition: 0.5s;
-}
-
-.Explore:hover::before, button:hover::after {
-  transform: scale(0)
-}
-
-.Explore:hover {
-  box-shadow: inset 0px 0px 25px #ff385c;
-}
-</style>

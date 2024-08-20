@@ -1,14 +1,81 @@
-<footer class="footer">
-    <div class="f-info">
-        <div class="f-info-socials">
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-square-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
+<style>
+    .list-unstyled a {
+        text-decoration: none;
+    }
+    .list-unstyled a:hover {
+        text-decoration: underline;
+    }
+    .list-unstyled li {
+        padding: 5px 0;
+    }
+    footer{
+        margin-top: 2rem;
+        border-top-left-radius: 100px;
+        background-color: #ebebf1;
+        border: 1px solid black;
+        
+    }
+    .container {
+        padding: 20px;
+        margin-top: 2rem;
+    }
+    .followus a {
+        font-size: 2em;
+        padding: 0 15px 0 0;
+    }
+    .nameanddec p{
+        margin-top: 1rem;
+    }
+</style>
+
+
+<footer class=" pt-4 ">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-3 nameanddec">
+        <h5 class="text-uppercase">GlobeStay</h5>
+        <p>Find and book short-term rentals <br>all over the world.</p>
+      </div>
+      <br>
+     
+      <div class="col-md-3 quicklinks">
+        <h5 class="text-uppercase">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/listings" class="text-black">Home</a></li>
+          <li><a href="/listings" class="text-black">About Us</a></li>
+          <li><a href="/listings" class="text-black">Terms & Conditions</a></li>
+          <li><a href="/listings" class="text-black">Contact Us</a></li>
+        </ul>
+      </div>
+      <br>
+      <div class="col-md-3 quicklinks">
+        <h5 class="text-uppercase">ACCOUNT</h5>
+        <ul class="list-unstyled">
+          <% if(!currUser){ %>
+           <li> <a class="nav-link" href="/signup">Sign Up</a></li>
+            <li><a class="nav-link" href="/login">Log In</a></li>
+         <% } %>
+         
+         <% if(currUser){ %>
+            <a class="nav-link" href="/logout">Log Out</a>
+         <% } %>
+         <li><a class="nav-link mybutton" href="/listings/new">Add New Listings</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 followus">
+        <h5 class="text-uppercase">Follow Us</h5>
+        <div>
+          <a href="https://facebook.com" class="text-black mr-3"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" class="text-black mr-3"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com" class="text-black mr-3"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com" class="text-black mr-3"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div class="f-info-brand"> &copy; GlobeStay Private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="text-center py-3">
+    &copy; 2024 GlobeStay | All Rights Reserved
+  </div>
 </footer>

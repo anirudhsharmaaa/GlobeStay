@@ -72,11 +72,6 @@ const sessionOptions = {
 };
 
 
-
-// app.get("/", (req, res) => {
-//     res.send("hi, I am root");
-// });
-
 //using session with its option and flash
 app.use(session(sessionOptions));
 app.use(flash());
