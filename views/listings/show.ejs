@@ -1,14 +1,3 @@
-<style>
-  .editanddeletebtn {
-    display: flex !important;
-  }
-
-  .editbtn {
-    margin-right: 5px !important;
-    width: 650px !important;
-  }
-</style>
-
 <% layout("/layouts/boilerplate") %>
   <div class="row">
     <div class="col-8 offset-3 mt-3">
@@ -69,7 +58,6 @@
         <form class="needs-validation" action="/listings/<%= listing.id %>/reviews" method="post" novalidate>
 
           <div class="mb-3 mt-3">
-            <lebel for="rating" class="form-label"> Rating </lebel>
             <fieldset class="starability-slot">
               <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
                 aria-label="No rating." />
@@ -100,10 +88,11 @@
         <% }%>
 
           <% if(listing.reviews.length> 0) { %>
-            <div class="row">
-              <h4 class="mb-4">All Reviews</h4>
+
+            <h4 class="mb-4">All Reviews</h4>
+            <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4">
               <% for(review of listing.reviews ) { %>
-                <div class="card col-6">
+                <div class="card col-5 review-card">
                   <div class="card-body">
                     <h5 class="card-title">@<%= review.author.username %>
                     </h5>
@@ -129,28 +118,48 @@
 
     <div class="col-6 offset-3 mb-3">
       <h3 class="map mb-4">Where you'll be</h3>
-      <div id="map"></div>
-      <script>
-        const listing =  <% - JSON.stringify(listing) %>; //marker coordinates
+      <div id="map">
 
-        let mapToken = "<%= process.env.MAP_TOKEN %>";
-        mapboxgl.accessToken = mapToken;
+        <script>
 
-        const map = new mapboxgl.Map({
-          container: 'map', // container ID
-          center: listing.geometry.coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
-          zoom: 9. // starting zoom
-        })
+          const listing =  <%-JSON.stringify(listing) %>;
 
-        //marker
-        const marker = new mapboxgl.Marker({ color: 'red' })
-          .setLngLat(listing.geometry.coordinates)  //listing.geometry.coordinates
-          .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(
-            `<h4>${listing.location}</h4><p>Exact Location will be provided after Booking</p>` //popup text
-          )
-          )
-          .addTo(map);
-      </script>
+          let mapToken = "<%= process.env.MAP_TOKEN %>";
+          mapboxgl.accessToken = mapToken;
+
+          const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            center: listing.geometry.coordinates, // starting position [lng, lat]. Note that lat must be set between -90 and 90
+            zoom: 9. // starting zoom
+          })
+
+          //marker
+          const marker = new mapboxgl.Marker({ color: 'red' })
+            .setLngLat(listing.geometry.coordinates)  //listing.geometry.coordinates
+            .setPopup(new mapboxgl.Popup({ offset: 25 }).setHTML(
+              `<h4>${listing.location}</h4><p>Exact Location will be provided after Booking</p>` //popup text
+            )
+            )
+            .addTo(map);
+        </script>
+      </div>
     </div>
   </div>
   </div>
+
+  <style>
+    .editanddeletebtn {
+      display: flex !important;
+    }
+
+    .editbtn {
+      margin-right: 5px !important;
+      width: 650px !important;
+    }
+
+    .review-card {
+      width: 275px !important;
+      margin-bottom: 15px;
+      margin-right: 50px;
+    }
+  </style>
