@@ -23,7 +23,9 @@ router.get('/api/search', async (req, res) => {
     const q = req.query.q;
     if (!q) return res.json([]);
 
-    const regex = new RegExp(q, 'i'); // case-insensitive
+    // Escape special regex characters
+    const escapedQuery = q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    const regex = new RegExp(escapedQuery, 'i'); // case-insensitive
 
     try {
         const results = await Listing.find({
