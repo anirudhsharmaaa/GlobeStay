@@ -148,29 +148,31 @@
 
 
 
-<div id="listings-container" class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 mt-4">
-  <% for (let listing of allListings) { %>
-    <div class="card col listing-card mb-4">
+  <div id="listings-container" class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 mt-4">
+    <% for( let listing of allListings){ %>
       <a href="/listings/<%= listing._id %>" class="listing-link">
-        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= listing.title %>
-        </h5>
-        <p class="card-text"> ₹
-          <% if (listing.price !== null && listing.price !== undefined) { %>
-            <%= listing.price.toLocaleString("en-IN") %>
-          <% } else { %>
-            N/A
-          <% } %> /night
-          <i class="tax-info">&nbsp;(incl. taxes)</i>
-        </p>
-      </div>
-    </div>
-  <% } %>
-</div>
 
+        <div class="card col listing-card">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= listing.title %>
+            </h5>
+            <p class="card-text"> &#8377;
+              <% if (listing.price !==null && listing.price !==undefined) { %>
+                <%= listing.price.toLocaleString("en-IN") %>
+                  <% } else { %>
+                    N/A
+                    <% } %>
+                      /night
+                      <i class="tax-info">&nbsp;(incl. taxes)</i>
+
+          </div>
+        </div>
+        <% } %>
+  </div>
+  </a>
 
   <script>
   const taxCheckbox = document.getElementById("flexSwitchCheckDefault");
