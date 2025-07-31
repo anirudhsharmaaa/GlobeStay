@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <br />
+      <h1>Log in on GlobeStay</h1>
+      <br />
+      <form
+        action="/login"
+        method="POST"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            name="username"
+            id="username"
+            type="text"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <span>Don't have an account?<a href="/signup"> Sign up</a></span>
+        <br />
+        <br />
+        <button class="btn btn-dark" style="height: 45px; width: 100px">
+          Log in
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
